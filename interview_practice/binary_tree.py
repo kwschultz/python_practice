@@ -79,6 +79,18 @@ def levelorder_traversal_print(node):
     return traversal
 
 
+def height_of_tree(node):
+
+    if not node:
+        return -1
+
+    left_height = height_of_tree(node.left)
+    right_height = height_of_tree(node.right)
+
+    return 1 + max(left_height, right_height)
+
+
+
 
 if __name__ == '__main__':
     
@@ -99,23 +111,29 @@ if __name__ == '__main__':
     btree.root.right.right = Node(7)
     btree.root.right.right.right = Node(8)
 
-    """
     # Expected pre-order traversal:
     # 1 2 4 5 3 6 7 8
     traversal = ''
     print(preorder_traversal_print(btree.root, traversal))
     print('')
+    
     # Expected pre-order traversal:
     # 4 2 5 1 6 3 7 8
     traversal = ''
     print(inorder_traversal_print(btree.root, traversal))
     print('')
+    
     # Expected post-order traversal:
     # 4 5 2 6 8 7 3 1
     traversal = ''
     print(postorder_traversal_print(btree.root, traversal))
-    """
+    print('')
 
     # Expected level-order traversal:
     # 1 2 3 4 5 6 7 8
     print(levelorder_traversal_print(btree.root))
+    print('')
+
+    # Expected height = 3
+    print('Tree is this high: {}'.format(height_of_tree(btree.root)))
+    print('')
