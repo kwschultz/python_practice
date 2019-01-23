@@ -49,10 +49,22 @@ class BST(object):
         elif value == node.value:
             return True
 
-    
-                             
+    def inorder_traversal_tolist(self, node):
+        values = list()
+        if node is None:
+            return values
+        return self._inorder_traversal_tolist(values, node)
 
-                             
+    def _inorder_traversal_tolist(self, values, node):
+        if node is None:
+            return values
+
+        values = self._inorder_traversal_tolist(values, node.left)
+        values.append(node.value)
+        values = self._inorder_traversal_tolist(values, node.right)
+
+        return values
+
                              
 bst = BST()
                              
@@ -61,8 +73,10 @@ bst.insert(5)
 bst.insert(10)
 bst.insert(9)
 bst.insert(8)
+bst.insert(1)
+bst.insert(3)
+bst.insert(6)
+bst.insert(2)
+bst.insert(7)
 
-print(bst.find(9))
-print(bst.find(10))
-print(bst.find(4))
-print(bst.find(43))
+print(bst.inorder_traversal_tolist(bst.root))
